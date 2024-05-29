@@ -1,0 +1,208 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.button-container {
+  margin-top: 10px;
+}
+
+.info-section {
+  display: flex;
+  margin-top: 20px;
+}
+
+.poster {
+  width: 200px;
+  border-radius: 8px;
+}
+
+.details {
+  margin-left: 20px;
+  flex: 1;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.rating img {
+  width: 24px;
+  margin-right: 8px;
+}
+
+.netflix-link {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #E50914;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+}
+
+.popup h2 {
+  margin-top: 0;
+}
+
+.review-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.review-container div:first-child {
+  margin-right: 20px;
+}
+
+.review-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.movie-description{
+  background-color: #d5d5d5; 
+  border-radius: 15px; 
+  padding: 20px;  
+  margin-left: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.btn-add-review {
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 50px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-add-review:hover {
+  background-color: #555;
+}
+
+
+.review-content-container {
+  margin: 50px auto;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.btn-submit {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #45a049; /* Darker green */
+}

@@ -69,3 +69,18 @@ ball.addEventListener("click", () => {
   });
   ball.classList.toggle("active");
 });
+
+function handleReadMore(event) {
+    const movieItem = event.target.closest('.movie-list-item');
+    const title = movieItem.querySelector('.movie-list-item-title').innerText;
+    const desc = movieItem.querySelector('.movie-list-item-desc').innerText;
+    const imgSrc = movieItem.querySelector('.movie-list-item-img').src;
+
+    localStorage.setItem('movieTitle', title);
+    localStorage.setItem('movieDesc', desc);
+    localStorage.setItem('movieImg', imgSrc);
+
+    window.location.href = './Componentes/UserReview/Review.html';
+}
+
+

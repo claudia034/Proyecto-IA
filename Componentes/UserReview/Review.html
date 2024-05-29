@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Review.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Movie Review</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="header">
+            <h1 id="movieTitle">Movie Title</h1>
+        </div>
+        <div class="review-container">
+            <img id="movieImg" src="image" alt="Bridgerton">
+            <div class="movie-description">
+                <img src="../../img/Fresh.png" alt="Tomatometer" style="width: 50px; height: 50px;">
+                <span>86%</span>
+                <img src="../../img/Score.png" alt="Audience Score" style="width: 50px; height: 50px;">
+                <span>87%</span>
+                <p id="movieDesc">Description</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="btn-add-review" id="sendReviewButton">Send a Review</button>
+        </div>
+    </div>
+    
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button class="close-button" id="closeButton">Close</button>
+            <h2 id="popupTitle">Title Popup Text</h2>
+            <div class="rating-container">
+                <img src="../../img/Fresh.png" alt="Tomatometer" style="width: 45px; height: 45px;">
+                <span>86%</span>
+                <img src="../../img/Score.png" alt="Audience Score" style="width: 45px; height: 45px;">
+                <span>87%</span>
+            </div>
+            <div>
+                <p>Your rating:</p>
+                <div>
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
+            </div>
+            <div class="review-content-container">
+                <div class="question">What did you think of the show?</div>
+                <div class="description">Your review helps others find great movies and shows to watch. Please share your honest experience on what you liked or disliked.</div>
+                <textarea rows="5" cols="50"></textarea>
+                <button class="btn-submit">SUBMIT CHANGES</button>
+              </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('sendReviewButton').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'flex';
+        });
+
+        document.getElementById('closeButton').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
