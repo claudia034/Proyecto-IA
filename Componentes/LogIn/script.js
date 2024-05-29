@@ -14,31 +14,44 @@ loginBtn.addEventListener('click', () => {
 })
 
 loginForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const formData = new FormData(loginForm);
-    const username = formData.get('username');
-    const password = formData.get('password');
+  event.preventDefault();
+  const formData = new FormData(loginForm);
+  const username = formData.get('username');
+  const password = formData.get('password');
 
-    // Verificar que ambos campos estén completos antes de continuar
-    if (!username && !password) {
-      LoginMessage.textContent = 'Please enter both username and password.';
-      return;
-    }else if (!username) {
-      LoginMessage.textContent = 'Please enter your username.';
-      return;
-    }else if (!password) {
-      LoginMessage.textContent = 'Please enter your password.';
-      return;
-    }
+  // Verificar que ambos campos estén completos antes de continuar
+  if (!username || !password) {
+    LoginMessage.textContent = 'Please enter both username and password.';
+    return;
+  }
 
-      container.classList.remove("active");
-      LoginMessage.textContent = 'Enter your new user details to use all of site features';
-      RegisterMessage.textContent = 'Enter your personal details to use all of site features';
+  // Crear un objeto con los datos del usuario
+  const userData = {
+    username: username,
+    password: password
+  };
+
+  // Realizar la solicitud POST utilizando fetch
+  fetch('http://127.0.0.1:5000/login', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+  })
+  .then(response => response.json())
+  .then(data => {
+      // Realizar acciones adicionales si es necesario después de iniciar sesión
+      console.log('Usuario conectado:', data);
       sessionStorage.setItem('username', username);
-      sessionStorage.setItem('password', password);        // Redirigir a index.html
-      window.location.href = '../../index.html';
+      sessionStorage.setItem('password', password);
+      window.location.href = '../../index.html'; // Redirigir a la página principal
+  })
+  .catch(error => {
+      console.error('Error al iniciar sesión:', error);
+      // Manejar errores si es necesario
   });
-
+});
   
   RegisterForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -52,13 +65,30 @@ loginForm.addEventListener('submit', (event) => {
       LoginMessage.textContent = 'Please enter all Data.';
       return;
     }
-        container.classList.remove("active");
-        LoginMessage.textContent = 'Enter your new user details to use all of site features';
-        RegisterMessage.textContent = 'Enter your personal details to use all of site features';
-        sessionStorage.setItem('publisher', publisher);
+      // Crear un objeto con los datos del usuario
+    const userData = {
+      username: username,
+      password: password
+    };
+
+    // Realizar la solicitud POST utilizando fetch
+    fetch('http://127.0.0.1:5000/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Realizar acciones adicionales si es necesario después de registrar
+        console.log('Usuario registrado:', data);
         sessionStorage.setItem('username', username);
         sessionStorage.setItem('password', password);
-        // Redirigir a index.html
-        window.location.href = '../../index.html';
-
-  });
+        window.location.href = '../../index.html'; // Redirigir a la página principal
+    })
+    .catch(error => {
+        console.error('Error al registrar usuario:', error);
+        // Manejar errores si es necesario
+    });
+});
