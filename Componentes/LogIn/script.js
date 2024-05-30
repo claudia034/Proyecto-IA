@@ -47,6 +47,7 @@ loginForm.addEventListener('submit', (event) => {
         console.log('Usuario conectado:', data);
         sessionStorage.setItem('username', username);
         sessionStorage.setItem('password', password);
+        sessionStorage.setItem('isLoggedIn', 'true');
         window.location.href = '../../index.html';
     })
     .catch(error => {
@@ -88,10 +89,10 @@ loginForm.addEventListener('submit', (event) => {
         console.log('Usuario registrado:', data);
         sessionStorage.setItem('username', username);
         sessionStorage.setItem('password', password);
+        sessionStorage.setItem('isLoggedIn', 'true');
         window.location.href = '../../index.html'; // Redirigir a la página principal
     })
     .catch(error => {
         console.error('Error al registrar usuario:', error);
-        // Manejar errores si es necesario
     });
 });

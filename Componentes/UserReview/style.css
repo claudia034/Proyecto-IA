@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   margin: 0;
   padding: 0;
 }
@@ -71,16 +71,7 @@ header {
   margin-right: 8px;
 }
 
-.netflix-link {
-  display: inline-block;
-  margin-top: 20px;
-  text-decoration: none;
-  padding: 10px 20px;
-  background-color: #E50914;
-  color: #fff;
-  border-radius: 4px;
-}
-
+/**/
 .popup {
   position: fixed;
   top: 0;
@@ -205,4 +196,68 @@ header {
 
 .btn-submit:hover {
   background-color: #45a049; /* Darker green */
+}
+
+/*Star rating*/
+.star-wrapper { 
+  position: absolute;
+  direction: rtl;
+}
+.star-wrapper a {
+  font-size: 2em;
+  color: #511111;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+.star-wrapper a:hover {
+  color: gold;
+  transform: scale(1.3);
+}
+.s1:hover ~ a {
+  color: gold;
+}
+.s2:hover ~ a {
+  color: gold;
+}
+.s3:hover ~ a {
+  color: gold;
+}
+.s4:hover ~ a {
+  color: gold;
+}
+.s5:hover ~ a {
+  color: gold;
+}
+
+/*Display reviews*/
+.reviews-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.review-card {
+  width: 30%; /* ajusta el ancho según sea necesario */
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.review-card h3 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review-card p {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.review-card span {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 10px;
 }

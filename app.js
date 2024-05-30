@@ -52,12 +52,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(Math.floor(window.innerWidth / 270));
   });
 
-  // DROPDOWN MENU
-  const dropdownMenu = document.querySelector('.dropdown-menu');
-  const isLoggedIn = false; // Cambia este valor según el estado de inicio de sesión
 
+  // DROPDOWN MENU
+
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+  
   function updateDropdownMenu() {
     dropdownMenu.innerHTML = '';
+    
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
 
     if (isLoggedIn) {
       const profileItem = document.createElement('li');
@@ -68,6 +71,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       const signOutItem = document.createElement('li');
       signOutItem.classList.add('dropdown-item');
       signOutItem.textContent = 'Sign Out';
+      signOutItem.addEventListener('click', () => {
+        sessionStorage.removeItem('isLoggedIn');
+        sessionStorage.removeItem('username');
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('username'); 
+        window.location.href = './index.html';
+      });
       dropdownMenu.appendChild(signOutItem);
     } else {
       const signInItem = document.createElement('li');
@@ -79,7 +89,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       dropdownItems.forEach((item) => {
         item.addEventListener('click', () => {
-          const targetPage = item.textContent.replace(' ', '');
           window.location.href = `./Componentes/LogIn/LogIn.html`;
         });
       });
@@ -121,7 +130,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       
       const reviewsData = await reviewsResponse.json();
       console.log('Reviews:', reviewsData);
-      // Aquí puedes agregar la lógica para mostrar las revisiones en tu interfaz de usuario
       
       // Guardar los detalles de la película en el almacenamiento local
       const desc = movieItem.querySelector('.movie-list-item-desc').innerText;
@@ -129,6 +137,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       localStorage.setItem('movieTitle', title);
       localStorage.setItem('movieDesc', desc);
       localStorage.setItem('movieImg', imgSrc);
+
+      //Guardar los detalles del usuario
+      const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+      const username = sessionStorage.getItem('username');
+      localStorage.setItem('isLoggedIn', isLoggedIn);
+      localStorage.setItem('user', username);
       
       // Redirigir a la página de revisión del usuario
       window.location.href = './Componentes/UserReview/Review.html';

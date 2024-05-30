@@ -2,14 +2,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const title = localStorage.getItem('movieTitle');
     const desc = localStorage.getItem('movieDesc');
     const imgSrc = localStorage.getItem('movieImg');
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const username = localStorage.getItem('user');
 
     if (title && desc && imgSrc) {
         document.getElementById('movieTitle').innerText = title;
         document.getElementById('movieDesc').innerText = desc;
         document.getElementById('movieImg').src = imgSrc;
         document.getElementById('popupTitle').innerText = title;
+        document.getElementById('popupImg').src = imgSrc;
+        fetchReviews(title);
     } else {
         window.location.href = 'index.html';
+    }
+
+    const sendReviewButton = document.getElementById('sendReviewButton');
+    if (isLoggedIn) {
+        sendReviewButton.style.display = 'block';
+    } else {
+        sendReviewButton.style.display = 'none';
     }
 
     document.getElementById('sendReviewButton').addEventListener('click', function() {
@@ -24,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const reviewText = document.getElementById('reviewText').value;
         const publisher = document.getElementById('publisher').value;
         const rottenLink = document.getElementById('rottenLink').value;
-        const user = document.getElementById('user').value;
+        const user = username;
         const movieTitle = title;
 
         if (reviewText && publisher && rottenLink && user) {
@@ -63,4 +74,55 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Please fill in all fields.');
         }
     });
+    function fetchReviews(movieTitle) {
+        fetch('http://127.0.0.1:5000/get-reviews', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ movie_title: movieTitle })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.reviews) {
+                displayReviews(data.reviews);
+            } else {
+                alert('Failed to fetch reviews: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while fetching the reviews.');
+        });
+    }
+
+    function displayReviews(reviews) {
+        const reviewsContainer = document.getElementById('reviewsContainer');
+        reviewsContainer.innerHTML = ''; // Clear previous reviews
+
+        reviews.forEach(review => {
+            const reviewElement = document.createElement('div');
+            reviewElement.classList.add('review-card');
+
+            const publisherElement = document.createElement('h3');
+            publisherElement.innerText = review.publisher;
+
+            const reviewTextElement = document.createElement('p');
+            reviewTextElement.innerText = review.review;
+
+            const reviewTypeElement = document.createElement('span');
+            reviewTypeElement.innerText = review.review_type;
+
+            reviewElement.appendChild(publisherElement);
+            reviewElement.appendChild(reviewTextElement);
+            reviewElement.appendChild(reviewTypeElement);
+
+            reviewsContainer.appendChild(reviewElement);
+        });
+    }
 });

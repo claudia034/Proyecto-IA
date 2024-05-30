@@ -22,6 +22,10 @@
                 <p id="movieDesc">Description</p>
             </div>
         </div>
+        <div class="reviews-section">
+            <h2>Reviews</h2>
+            <div id="reviewsContainer"></div>
+        </div>
         <div class="button-container">
             <button class="btn-add-review" id="sendReviewButton">Send a Review</button>
         </div>
@@ -30,27 +34,23 @@
     <div class="popup" id="popup">
         <div class="popup-content">
             <button class="close-button" id="closeButton">Close</button>
-            <h2 id="popupTitle">Submit Your Review</h2>
-            <div class="rating-container">
-                <img src="../../img/Fresh.png" alt="Tomatometer" style="width: 45px; height: 45px;">
-                <span>86%</span>
-                <img src="../../img/Score.png" alt="Audience Score" style="width: 45px; height: 45px;">
-                <span>87%</span>
+            <h2 id="popupTitle">Movie Title</h2>
+            <img id="popupImg" src="image" alt="imgMovie" style="width: 150px; height: auto;">
+            <div class="star-wrapper">
+                <a href="#" class="fas fa-star s1"></a>
+                <a href="#" class="fas fa-star s2"></a>
+                <a href="#" class="fas fa-star s3"></a>
+                <a href="#" class="fas fa-star s4"></a>
+                <a href="#" class="fas fa-star s5"></a>
             </div>
-            <div>
-                <p>Your rating:</p>
-                <div>
-                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                </div>
-            </div>
+            <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
             <div class="review-content-container">
                 <div class="question">What did you think of the show?</div>
                 <div class="description">Your review helps others find great movies and shows to watch. Please share your honest experience on what you liked or disliked.</div>
                 <textarea id="reviewText" rows="5" cols="50"></textarea>
                 <input type="text" id="publisher" placeholder="Publisher" required>
                 <input type="text" id="rottenLink" placeholder="Rotten Tomatoes Link" required>
-                <input type="text" id="user" placeholder="Your Name" required>
-                <button class="btn-submit" id="submitReviewButton">SUBMIT CHANGES</button>
+                <button class="btn-submit" id="submitReviewButton">SUBMIT REVIEW</button>
             </div>
         </div>
     </div>
