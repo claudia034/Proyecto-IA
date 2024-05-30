@@ -8,7 +8,6 @@
     <title>Movie Review</title>
 </head>
 <body>
-    
     <div class="container">
         <div class="header">
             <h1 id="movieTitle">Movie Title</h1>
@@ -31,7 +30,7 @@
     <div class="popup" id="popup">
         <div class="popup-content">
             <button class="close-button" id="closeButton">Close</button>
-            <h2 id="popupTitle">Title Popup Text</h2>
+            <h2 id="popupTitle">Submit Your Review</h2>
             <div class="rating-container">
                 <img src="../../img/Fresh.png" alt="Tomatometer" style="width: 45px; height: 45px;">
                 <span>86%</span>
@@ -47,20 +46,13 @@
             <div class="review-content-container">
                 <div class="question">What did you think of the show?</div>
                 <div class="description">Your review helps others find great movies and shows to watch. Please share your honest experience on what you liked or disliked.</div>
-                <textarea rows="5" cols="50"></textarea>
-                <button class="btn-submit">SUBMIT CHANGES</button>
-              </div>
+                <textarea id="reviewText" rows="5" cols="50"></textarea>
+                <input type="text" id="publisher" placeholder="Publisher" required>
+                <input type="text" id="rottenLink" placeholder="Rotten Tomatoes Link" required>
+                <input type="text" id="user" placeholder="Your Name" required>
+                <button class="btn-submit" id="submitReviewButton">SUBMIT CHANGES</button>
+            </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('sendReviewButton').addEventListener('click', function() {
-            document.getElementById('popup').style.display = 'flex';
-        });
-
-        document.getElementById('closeButton').addEventListener('click', function() {
-            document.getElementById('popup').style.display = 'none';
-        });
-    </script>
 </body>
 </html>
