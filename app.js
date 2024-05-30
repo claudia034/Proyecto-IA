@@ -9,20 +9,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     const data = await response.json();
     const movieList = document.getElementById('new-releases-list');
-    // Vaciar el contenedor antes de agregar nuevas películas
-    movieList.innerHTML = '';
     
-    data.movies.forEach(movie => {
-      const movieItem = document.createElement('div');
-      movieItem.classList.add('movie-list-item');
-      movieItem.innerHTML = `
-        <img class="movie-list-item-img" src="${movie.poster}" alt="${movie.movie_title}">
-        <div class="movie-list-item-title">${movie.movie_title}</div>
-        <div class="movie-list-item-desc">${movie.plot}</div>
-        <button class="movie-list-item-button" onclick="handleReadMore(event)">Read More</button>
-      `;
-      movieList.appendChild(movieItem);
-    });
+    // Verificar si el elemento existe
+    if (movieList) {
+      // Vaciar el contenedor antes de agregar nuevas películas
+      movieList.innerHTML = '';
+      
+      data.movies.forEach(movie => {
+        const movieItem = document.createElement('div');
+        movieItem.classList.add('movie-list-item');
+        movieItem.innerHTML = `
+          <img class="movie-list-item-img" src="${movie.poster}" alt="${movie.movie_title}">
+          <div class="movie-list-item-title">${movie.movie_title}</div>
+          <div class="movie-list-item-desc">${movie.plot}</div>
+          <button class="movie-list-item-button" onclick="handleReadMore(event)">Read More</button>
+        `;
+        movieList.appendChild(movieItem);
+      });
+    } else {
+      console.error('Element with id "new-releases-list" not found');
+    }
   } catch (error) {
     console.error('Error fetching movies:', error);
   }
