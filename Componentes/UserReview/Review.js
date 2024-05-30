@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const movieTitle = title;
 
         if (reviewText && publisher && rottenLink && user) {
-            fetch('http://127.0.0.1:5000/predict', { // Asegúrate de que esta URL sea correcta
+            fetch('http://127.0.0.1:5000/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Please fill in all fields.');
         }
     });
+
     function fetchReviews(movieTitle) {
         fetch('http://127.0.0.1:5000/get-reviews', {
             method: 'POST',
@@ -109,16 +110,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const reviewElement = document.createElement('div');
             reviewElement.classList.add('review-card');
 
-            const publisherElement = document.createElement('h3');
-            publisherElement.innerText = review.publisher;
+            const userElement = document.createElement('h3');
+            userElement.innerText = review.user;
 
             const reviewTextElement = document.createElement('p');
             reviewTextElement.innerText = review.review;
 
-            const reviewTypeElement = document.createElement('span');
+            const reviewTypeElement = document.createElement('div');
+            reviewTypeElement.classList.add('review-type');
             reviewTypeElement.innerText = review.review_type;
 
-            reviewElement.appendChild(publisherElement);
+            reviewElement.appendChild(userElement);
             reviewElement.appendChild(reviewTextElement);
             reviewElement.appendChild(reviewTypeElement);
 
