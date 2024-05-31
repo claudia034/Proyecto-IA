@@ -101,6 +101,12 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 alert('Failed to fetch reviews: ' + data.message);
             }
+
+            // Mostrar los porcentajes de "fresh" y "rotten"
+            if (data.result) {
+                document.getElementById('freshPercentage').textContent = `${data.result.fresh}%`;
+                document.getElementById('rottenPercentage').textContent = `${data.result.rotten}%`;
+            }
         })
         .catch(error => {
             console.error('Error:', error);
