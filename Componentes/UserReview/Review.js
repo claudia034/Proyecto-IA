@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('movieImg').src = imgSrc;
         document.getElementById('popupTitle').innerText = title;
         document.getElementById('popupImg').src = imgSrc;
-        
+
         fetchReviews(title);
+        fetchMovieReview(title); // Llamar a la función para obtener los porcentajes de "fresh" y "rotten"
     } else {
         window.location.href = 'index.html';
     }
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sendReviewButton.style.display = 'none';
     }
 
-    document.getElementById('sendReviewButton').addEventListener('click', function() {
+    sendReviewButton.addEventListener('click', function() {
         document.getElementById('popup').style.display = 'flex';
     });
 
@@ -64,6 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 if (data.classification) {
                     alert('Review submitted successfully! Classification: ' + data.classification);
+                    fetchReviews(movieTitle); // Refresh reviews after submitting a new one
+                    fetchMovieReview(movieTitle); // Refresh movie review percentages
                 } else {
                     alert('Failed to submit review: ' + data.message);
                 }
@@ -101,12 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 alert('Failed to fetch reviews: ' + data.message);
             }
-
-            // Mostrar los porcentajes de "fresh" y "rotten"
-            if (data.result) {
-                document.getElementById('freshPercentage').textContent = `${data.result.fresh}%`;
-                document.getElementById('rottenPercentage').textContent = `${data.result.rotten}%`;
-            }
         })
         .catch(error => {
             console.error('Error:', error);
@@ -137,6 +134,35 @@ document.addEventListener('DOMContentLoaded', function() {
             reviewElement.appendChild(reviewTypeElement);
 
             reviewsContainer.appendChild(reviewElement);
+        });
+    }
+
+    function fetchMovieReview(movieTitle) {
+        fetch('http://127.0.0.1:5000/movie-review', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ movie_title: movieTitle })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Mostrar los porcentajes de "fresh" y "rotten"
+            if (data.result) {
+                document.getElementById('freshPercentage').textContent = `${data.result.fresh * 100}%`;
+                document.getElementById('rottenPercentage').textContent = `${data.result.rotten * 100}%`;
+            } else {
+                alert('Failed to fetch movie review percentages: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while fetching the movie review percentages.');
         });
     }
 

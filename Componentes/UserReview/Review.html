@@ -7,13 +7,6 @@
     <script src="Review.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Movie Review</title>
-    <script src="js/Review.js"></script>
-
-<script>
-    // Llama a fetchReviews(movieTitle) cuando sea necesario
-    fetchReviews('Título de la película');
-</script>
-
 </head>
 <body>
     <header class="main-header">
@@ -25,9 +18,9 @@
             <img id="movieImg" src="image" alt="Bridgerton">
             <div class="movie-description">
                 <img src="../../img/Fresh.png" alt="Tomatometer" style="width: 50px; height: 50px;">
-                <span>86%</span>
+                <span id="freshPercentage">86%</span>
                 <img src="../../img/Score.png" alt="Audience Score" style="width: 50px; height: 50px;">
-                <span>87%</span>
+                <span id="rottenPercentage">87%</span>
                 <p id="movieDesc">Description</p>
             </div>
         </div>
@@ -59,6 +52,7 @@
                 <textarea id="reviewText" rows="5" cols="50"></textarea>
                 <input type="text" id="publisher" placeholder="Publisher" required>
                 <input type="text" id="rottenLink" placeholder="Rotten Tomatoes Link" required>
+                <input type="text" id="user" placeholder="Username" required>
                 <button class="btn-submit" id="submitReviewButton">SUBMIT REVIEW</button>
             </div>
         </div>
